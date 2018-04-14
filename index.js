@@ -638,3 +638,97 @@
     xhr.send(data);
   }
   shortenUrl();
+
+  //$.ajax() GET Request
+  /* structure
+  $.ajax({
+    url: 'https://api-to-call.com/endpoint',
+    type: 'GET',
+    dataType: 'json',
+    success(response){
+      console.log(response);
+  	},
+    error(jqXHR, status, errorThrown){
+      console.log(jqXHR);
+    }
+  });
+  */
+  function expandUrlAjax() {
+    const inputText = 'https://goo.gl/cjyLB1';
+  	const urlToExpand = url + '?key=' + apiKey + '&shortUrl=' + inputText;
+    $.ajax({
+      url: urlToExpand,
+      type: ('GET'),
+      dataType: 'json',
+      success(response) {
+        console.log(response);
+      },
+      error(jqXHR, status, errorThrown){
+        console.log(jqXHR);
+      }
+    });
+  }
+  expandUrlAjax();
+
+  //$.ajax() POST Request
+  /* structure
+  $.ajax({
+    url: 'https://api-to-call.com/endpoint',
+    type: 'POST',
+    data: JSON.stringify({id: 200}),
+    dataType: 'json',
+    success(response){
+      console.log(response);
+    }, error(jqXHR, status, errorThrown) {
+    	console.log(jqXHR);
+  	}
+  });
+  */
+  function shortenUrlAjax() {
+    const inputText = 'https://medium.com/@codecademy/breaking-the-coding-language-barrier-bf24652c3c60';
+  	const urlWithKey = url + '?key=' + apiKey;
+    const urlToShorten = inputText;
+    $.ajax({
+      url: urlWithKey,
+      type: 'POST',
+      data: JSON.stringify({longUrl: urlToShorten}),
+      dataType: 'json',
+      contentType: 'application/json',
+      success(response) {
+        console.log(response);
+        $responseField.append('<p>Your shortened url is: </p><p>' + response.id + '</p>');
+      }, error(jqXHR, status, errorThrown) {
+      	console.log(jqXHR);
+    	}
+    });
+  }
+  shortenUrlAjax();
+
+  //AJAX requests with $.get()
+  /*
+  $.get(urlToExpand, response => {
+    $responseField.append('<p>Your expanded url is: </p><p>' +
+  response.longUrl + '</p>');
+  }, 'json');
+
+
+  //AJAX request with $.post()
+  $.post({
+    url: urlWithKey,
+    data: JSON.stringify({longUrl: urlToShorten}),
+    dataType: 'json',
+    contentType: 'application/json',
+    success(response) {
+      console.log(response);
+      $responseField.append('<p>Your shortened url is: </p><p>' + response.id + '</p>');
+    }, error(jqXHR, status, errorThrown) {
+      console.log(jqXHR);
+    }
+  });
+  */
+
+
+  //
+  $.getJSON(urlToExpand, response => {
+    $responseField.append('<p>Your expanded url is: </p><p>' + response.longUrl + '</p>');
+  });
