@@ -568,3 +568,73 @@
   console.log(nurseOlynyk.holidaysRemaining);
   nurseOlynyk.addCertification('Genetics');
   console.log(nurseOlynyk.certifications);
+
+
+
+//Request
+  //XHR GET Request
+  /* //structure
+  const xhr = new XMLHttpRequest();
+  const url = 'https://api-to-call.com/endpoint';
+  xhr.responseType = 'json';
+
+  xhr.onreadystatechange = function() {
+  if(xhr.readyState === XMLHttpRequest.DONE ) {
+    console.log(xhr.response);
+  }
+  }
+
+  xhr.open('GET', url);
+  xhr.send();
+  */
+  const apiKey = 'AIzaSyBXj0HyOMDH2uP4PElGx3and0MWMUIwooc';
+  const url = 'https://www.googleapis.com/urlshortener/v1/url';
+  function expandUrl() {
+    const inputText = 'https://goo.gl/cjyLB1';
+
+    const urlToExpand = url + '?key=' + apiKey + '&shortUrl=' + inputText;
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        console.log(xhr.response);
+      }
+    }
+
+    xhr.open('GET', urlToExpand);
+    xhr.send();
+  }
+  expandUrl();
+  //XHR POST Request
+  /*
+  const xhr = new XMLHttpRequest();
+  const url = 'https://api-to-call.com/endpoint';
+  const data = JSON.stringify({id: '200'});
+  xhr.responseType = 'json';
+
+  xhr.onreadystatechange = function() {
+    if(xhr.readyState === XMLHttpRequest.DONE ) {
+      console.log(xhr.response);
+    }
+  }
+
+  xhr.open('POST', url);
+  xhr.send(data);
+  */
+  function shortenUrl() {
+    const inputText = 'https://medium.com/@codecademy/breaking-the-coding-language-barrier-bf24652c3c60';
+    const urlWithKey = url + '?key=' + apiKey;
+    const urlToShorten = inputText;
+    const data = JSON.stringify({longUrl: urlToShorten});
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState === XMLHttpRequest.DONE) {
+        console.log(xhr.response);
+      }
+    }
+    xhr.open('POST', urlWithKey);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+  }
+  shortenUrl();
