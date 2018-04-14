@@ -34,22 +34,6 @@ const doomsday = new Date("2012-12-02")
 console.log(doomsday)
 document.write(doomsday);
 
-//level6
-const sentenseA = "Hello World!";
-const sentenseB = "Good Bye!";
-const sentenseC = sentenseA + " cruel " +sentenseB;
-console.log(sentenseC.toLowerCase());
-
-//level7
-var string = "good bye cruel world";
-var str = string.split(" ");
-
-for (var i = 0; i < str.length; i++){
-  str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-}
-
-console.log(str.join(" "));
-
 
 let kelvin = "294";
 //kelvin asdf
@@ -233,7 +217,7 @@ let smallerNums = nums.map(num => num - 5);
 
 // Choose a method that will return a boolean value
 nums.every(num => num < 0);
-
+/*
 const lampu = () => {
   console.log("asdf");
 }
@@ -242,3 +226,84 @@ function lampus(){
   console.log("asdf");
 }
 lampus();
+*/
+
+
+//javascript-project1
+//level6
+const sentenseA = "Hello World!";
+const sentenseB = "Good Bye!";
+const sentenseC = sentenseA + " cruel " +sentenseB;
+console.log(sentenseC.toLowerCase());
+
+//level7
+var string = "good bye cruel world";
+var str = string.split(" ");
+
+for (var i = 0; i < str.length; i++){
+  str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+}
+
+
+
+function logname(name){
+  console.log(`My name is ${name}`);
+}
+
+function insertCustomName(callback){
+  var name = "Najib";
+  callback(name);
+}
+
+insertCustomName(logname);
+
+
+let todo = [];
+
+let inputTodo = ""
+
+let todoPromise = new Promise((resolve, reject) => {
+  if inputTodo (inputTodo === ""){
+    const error = new console.error("kosong brah");;
+    reject(error);
+  }else{
+    resolve(inputTodo);
+  }
+});
+
+todoPromise
+  .then(inputTodo => {
+    todo.push(inputTodo);
+    return todo;
+  })
+  .then(inputTodo ={
+    inputTodo += "gg";
+    todo.push(inputTodo;);
+    console.log(todo);
+  })
+  .catch(error => {
+    console.log(".catch >>>" + error.message);
+  })
+
+
+  let human = {
+  _name: 'Lu Xun',
+  _age: 137,
+
+  set age(ageIn) {
+    if (typeof ageIn === 'number') {
+      this._age = ageIn;
+    }
+    else {
+      console.log('Invalid input');
+      return 'Invalid input';
+    }
+  },
+  get age() {
+    console.log(`${this._name} is ${this._age} years old.`);
+    return this._age;
+  }
+  };
+
+  human.age = 39;
+  console.log(human.age);

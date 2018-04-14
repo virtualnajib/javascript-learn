@@ -227,8 +227,10 @@
   console.log(bucketList);
   //example
   let a = ("Hello World");
-  b = a.split(" ");;
+  b = a.split(" ");
   console.log(b);
+  c = a.charAt(0);
+  console.log(c);
   //example
   const newYearsResolitions = ["Become professional programmer", "Get married", "Become rich"];
   console.log(newYearsResolitions[0]); //output array -0
@@ -250,7 +252,7 @@
   console.log(groceryList); //remove the first item
   groceryList.unshift("pop corn"); //add item to beginning
   console.log(groceryList);
-  groceryList.slice();
+  groceryList.slice(1, 4);
   console.log(groceryList);
 
 
@@ -311,7 +313,6 @@
   let bigNumbers = numbers.map(function(number){
     return number  * 10;
   })
-  console.log(bigNumbers);
   //example
   let animals = ['Hen', 'elephant', 'llama', 'leopard', 'ostrich', 'Whale', 'octopus', 'rabbit', 'lion', 'dog'];
   let secretMessage = animals.map(function(animal){
@@ -336,3 +337,234 @@
   console.log(longFavoriteWords);
     //let longFavoriteWords = favoriteWords.filter(word => word.length > 7);
     //console.log(longFavoriteWords);
+
+
+
+//Objects
+  //example
+  let dog = {
+    _dogName: "halley",
+    _behavior: 0,
+
+    get dogName() {
+      return this.dogName;
+    },
+    get dogBehavior() {
+      return this.behavior;
+    },
+    incrementBehavior() {
+      this.behavior++;
+    }
+  }
+  //example
+  let person = {
+    name: "Najib",
+    age: 21,
+    weekendAlarm: "No alarms is needed",
+    weekAlarm: "Alarm is set to 7AM",
+    sayHello() { //methods
+      return `Hello my name is ${this.name}`
+    },
+    sayGoodbye() {//methods
+      return `Goodbye!`
+    }
+  }
+
+  person.hobbies= ["Gaming", "Coding"];// adding property
+  console.log(person);
+
+  let friend = {
+    name: "Haidar"
+  }
+
+  let alarm;
+  let day = "Monday"
+  if (day == "Saturday" || day == "Sunday"){
+    alarm = "weekendAlarm";
+  } else {
+    alarm = "weekAlarm";
+  };
+
+  console.log(person[alarm]);
+  console.log(person.sayHello());
+  friend.sayHello = person.sayHello;
+  console.log(friend.sayHello());
+
+  //example
+  const restaurantSpecials = {
+    breakfast: "The breakfast special is 20% off freshly squeezed orange juice",
+    lunch: "The lunch special is 10% off appetizers",
+    none: "There are no specials currently",
+  }
+
+  let time = 10;
+  let meal = "none";
+  if (time < 11){
+    meal = "breakfast";
+  } else if ( time < 17) {
+    meal = "lunch";
+  } else {
+    meal = "none";
+  }
+  console.log(restaurantSpecials[meal]);
+
+  //Adding a Property
+  const restaurant = {
+    name: "Italian Bistro",
+    seatingCapacity: 120,
+    hasDineInSpecial: true,
+    entrees: ['Penne alla Bolognese', 'Chicken Cacciatore', 'Linguine Pesto'],
+    openRestaurant() { //methods
+      if(this.hasDineInSpecial){
+        return 'Unlock the door, flip the open sign. We are open for business!';
+      } else {
+        return 'Unlock the door, then flip the open sign.';
+      }
+    },
+    closeRestaurant() {
+      return 'Lock the door, flip the open sign. We are closed.';
+    }
+  }
+  restaurant["appetizers"] = ['Fried Calamari', 'Bruschetta'];
+  restaurant.desserts = ['Homemade Tiramisu', 'Cannoli'];
+
+  restaurant["appetizers"] = ['Fried Calamari', 'Bruschetta', 'Caprese Salad'];//editing property
+  restaurant.desserts = ['Homemade Tiramisu', 'Canolli', 'Cheesecake'];//editing property
+  console.log(restaurant. openRestaurant());
+
+  //Getters and Setters
+  let newRestaurant = {
+    _name: 'Italian Bistro',
+    _seatingCapacity: 120,
+    _hasDineInSpecial: true,
+    _entrees: ['Penne alla Bolognese', 'Chicken Cacciatore', 'Linguine pesto'],
+
+    set seatingCapacity(newCapacity) {
+      if (typeof newCapacity === "number") {
+        this._seatingCapacity = newCapacity;
+      } else {
+        console.log(`Change ${newCapacity} to a number.`)
+      }
+    },
+    get seatingCapacity() {
+      console.log(`There are ${this._seatingCapacity} seats at Italian Bistro.`);
+      return this._seatingCapacity;
+    }
+  }
+  newRestaurant.seatingCapacity = 150;
+  console.log(newRestaurant.seatingCapacity);
+  //example
+  let human = {
+  _name: 'Lu Xun',
+  _age: 137,
+
+  set age(ageIn) {
+      if (typeof ageIn === 'number') {
+      this._age = ageIn;
+      console.log(`${ageIn} is valid input`);
+      } else {
+      return 'Invalid input';
+      }
+    },
+    get age() {
+      console.log(`${this._name} is ${this._age} years old.`);
+      return this._age;
+    }
+  };
+
+  human.age = 39;
+  console.log(human._age);
+
+//Classes OOP
+  //example
+  class Surgeon {
+    constructor(name, department) {
+      this._name = name;
+      this._department = department;
+      this._remainingVacationDays = 20;
+    }
+
+    get name() {
+      return this._name;
+    }
+
+    get department() {
+      return this._department;
+    }
+
+    get remainingVacationDays() {
+      return this._remainingVacationDays;
+    }
+
+    takeVacationDays(daysOff){
+      this._remainingVacationDays -= daysOff;
+    }
+  }
+
+  const surgeonCurry = new Surgeon('Curry', 'Cardiovascular');
+  const surgeonDurant = new Surgeon('Durant', 'Orthopedics');
+  console.log(surgeonCurry.name);
+  surgeonCurry.takeVacationDays(3);
+  console.log(surgeonCurry.remainingVacationDays);
+  console.log(surgeonCurry);
+  //example
+   class personalPerson{
+     constructor(name) {
+       this._name = name;
+       this._age = 0;
+     }
+
+     get name() {
+       return this._name;
+     }
+     get age() {
+       return this.age;
+     }
+
+     incrementAge() {
+      this._age++;
+     }
+   }
+
+   const najib = new personalPerson("Najib");
+   console.log(najib.name);
+   najib.incrementAge();
+   console.log()
+
+ //Inheritance
+   class HospitalEmployee{
+     constructor(name){
+       this._name = name;
+       this._holidaysRemaining = 20;
+     }
+     get name() {
+       return this._name;
+     }
+     get holidaysRemaining() {
+       return this._holidaysRemaining;
+     }
+     takeHolidays(holidaysOff) {
+       this._holidaysRemaining -= holidaysOff;
+     }
+     static generatePassword() {//static method
+       return Math.floor(Math.random() * 1000);
+     }
+   }
+  class Nurse extends HospitalEmployee{
+      constructor(name, certifications) {
+        super(name);
+        this._certifications = certifications;
+      }
+      get certifications() {
+        return this._certifications;
+      }
+      addCertification(newCertification) {
+        this._certifications.push(newCertification);
+      }
+  }
+  const nurseOlynyk = new Nurse('Olynyk', ['Trauma', 'Pediatrics']);
+  console.log(nurseOlynyk);
+  nurseOlynyk.takeHolidays(5);
+  console.log(nurseOlynyk.holidaysRemaining);
+  nurseOlynyk.addCertification('Genetics');
+  console.log(nurseOlynyk.certifications);
